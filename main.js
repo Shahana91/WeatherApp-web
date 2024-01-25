@@ -1,12 +1,15 @@
 const apikey="482dcd4de0fc4131379903db1d270c2a";
 const url= "https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
-const weatherCard=document.querySelector(".weather")
+
 const btn=document.getElementById("btn");
+
+const weatherCard=document.querySelector(".weather")
+
 btn.addEventListener('click',()=>{
     const city=document.querySelector(".search input");
     //console.log(city);
     if(city.value==""){
-        alert("Please enter a city name!");
+        alert("Please enter a City Name!");
     }else{
         fetchWeather(city.value);//function to fetch weather
     }
@@ -16,6 +19,7 @@ async function fetchWeather(city){
     const response=await fetch(url+city+`&appid=${apikey}`);
     console.log(url+city+`&appid=${apikey}`);
     if(response.status==200){
+        document.querySelector(".error").style.display="none";
         const data=await response.json();
         weatherCard.style.display="block";
 
@@ -36,7 +40,8 @@ async function fetchWeather(city){
             case "Mist":img.src="img/mist.png";break;
         }
     }else if  (response.status==404){
-
+        document.querySelector(".error").style.display="block";
+        document.querySelector(".weather").style.display="none"
     }
 }
  

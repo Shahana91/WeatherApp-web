@@ -73,6 +73,12 @@ body{
   height: 50px;
   width: 50px;
 }
+.error{
+    margin-top: 10px;
+    display: none;
+    color: white;
+    text-align: left;
+  }
 
 
 .weather{
